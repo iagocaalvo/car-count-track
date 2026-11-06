@@ -42,7 +42,7 @@ On the first frame you click **5 points**: **line 1** (2), **line 2** (2) and an
    └─────────────────────────────┘
          ↓ leaves here → IN
    ─────────────────────────────────  IN line (green)
-                          ● IN point
+             ● IN point
 ```
 
 - A vehicle is counted **once**, when it **leaves** the zone: through the IN line it counts **IN**, through the OUT line it counts **OUT**. Entering the zone is not counted.
