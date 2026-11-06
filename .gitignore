@@ -1,0 +1,38 @@
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- OS / editors ---------------------------------------------------------
+.DS_Store
+.idea/
+.vscode/
+
+# --- Local data (videos, zones and per-experiment config copies) -----------
+# Presets live in configs/; experiments/ is created from them on first run.
+data/
+experiments/
+
+# --- Models, datasets and training runs -----------------------------------
+# Official YOLO weights are downloaded to weights/; fine-tuned ones are trained there.
+weights/*
+!weights/.gitkeep
+*.pt
+*.onnx
+datasets/
+runs/
+*.zip
+
+# --- Results: only the README GIFs are committed ---------------------------
+results/**/*
+!results/*/
+!results/**/*.gif
+!results/**/.gitkeep
+
+# --- Logs -----------------------------------------------------------------
+*.log
