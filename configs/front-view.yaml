@@ -1,0 +1,21 @@
+# Front / elevated fixed camera looking along the road.
+name: front-view
+weights: yolo11s.pt            # COCO-pretrained; downloaded automatically on first run
+classes:                       # model class -> counted category (other classes are ignored)
+  car: car
+  truck: truck
+  bus: truck                   # COCO often labels lorries/trailers as "bus"
+imgsz: 1280
+iou: 0.50
+anchor: bottom_center          # point of the box that must cross the lines (where the car touches the road)
+process_width: 1920            # frames are downscaled to this width before inference
+target_fps: 25                 # 50 fps sources are processed every 2nd frame
+region_margin_px: 40           # also detect this many px outside the zone (to see vehicles cross the lines)
+device: auto                   # auto | cpu | mps | 0 (cuda)
+tracker:                       # ultralytics ByteTrack
+  track_high_thresh: 0.35      # confidence for a detection to be matched in the first stage
+  track_low_thresh: 0.10       # low-confidence detections used to keep tracks alive (also the detector floor)
+  new_track_thresh: 0.35       # confidence needed to start a new track
+  track_buffer: 30             # frames a lost track is kept (occlusions)
+  match_thresh: 0.80
+  fuse_score: true

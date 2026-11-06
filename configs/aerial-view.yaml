@@ -1,0 +1,21 @@
+# Drone / top-down views. Vehicles are small, so inference runs at a larger size.
+name: aerial-view
+weights: weights/aerial-vehicle.pt  # fine-tuned (see finetune/); use -w yolo11s.pt for the COCO baseline
+classes:                       # model class -> counted category (other classes are ignored)
+  car: car
+  truck: truck
+  bus: truck                   # COCO often labels lorries/trailers as "bus"
+imgsz: 1920
+iou: 0.50
+anchor: center                 # top-down: the box centre is the vehicle's ground position
+process_width: 1920            # 4K sources are downscaled to 1920 px wide
+target_fps: 25                 # 60 fps -> every 2nd frame (30 fps), 30 fps -> every frame
+region_margin_px: 30           # also detect this many px outside the zone (to see vehicles cross the lines)
+device: auto
+tracker:                       # ultralytics ByteTrack
+  track_high_thresh: 0.25      # confidence for a detection to be matched in the first stage
+  track_low_thresh: 0.10       # low-confidence detections used to keep tracks alive (also the detector floor)
+  new_track_thresh: 0.25       # confidence needed to start a new track
+  track_buffer: 30             # frames a lost track is kept (occlusions)
+  match_thresh: 0.80
+  fuse_score: true
